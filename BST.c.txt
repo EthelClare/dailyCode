@@ -8,9 +8,9 @@ typedef struct BiTNode
 	struct BiTNode* lchild, * rchild;
 }BiTNode, * BiTree;
 
-//¶ş²æÅÅĞòÊ÷µÄ ²éÕÒ²Ù×÷
-//TÊÇ¶ş²æÅÅĞòÊ÷µÄ¸ù½Úµã
-//´Ë´¦BiTreeµÄ×÷ÓÃÊÇ×÷Îª×îºó·µ»ØĞèÒªµÄ½Úµã
+//äºŒå‰æ’åºæ ‘çš„ æŸ¥æ‰¾æ“ä½œ
+//Tæ˜¯äºŒå‰æ’åºæ ‘çš„æ ¹èŠ‚ç‚¹
+//æ­¤å¤„BiTreeçš„ä½œç”¨æ˜¯ä½œä¸ºæœ€åè¿”å›éœ€è¦çš„èŠ‚ç‚¹
 int SearchBST(BiTree T, int key, BiTree f, BiTree* p)
 {
 	if (!T)
@@ -33,13 +33,13 @@ int SearchBST(BiTree T, int key, BiTree f, BiTree* p)
 	}
 }
 
-//²åÈë²Ù×÷
+//æ’å…¥æ“ä½œ
 int InsertBST(BiTree* T, int key)
 {
 	BiTree p, s;
 	if (!SearchBST(*T, key, NULL, &p))
 	{
-		//²éÕÒ²»³É¹¦µÄÊ±ºò,SearchBST»á·µ»ØÕâ¸ö½ÚµãÓ¦¸ÃËùÔÚµÄÎ»ÖÃµÄ¸¸½Úµã
+		//æŸ¥æ‰¾ä¸æˆåŠŸçš„æ—¶å€™,SearchBSTä¼šè¿”å›è¿™ä¸ªèŠ‚ç‚¹åº”è¯¥æ‰€åœ¨çš„ä½ç½®çš„çˆ¶èŠ‚ç‚¹
 		s = (BiTree*)malloc(sizeof(BiTNode));
 		if (!s)
 		{
@@ -49,7 +49,7 @@ int InsertBST(BiTree* T, int key)
 		s->data = key;
 		s->lchild = s->rchild = NULL;
 		if (!p)
-			*T = s; //±íÊ¾Ô­À´µÄÃ»ÓĞ¸ù½Úµã
+			*T = s; //è¡¨ç¤ºåŸæ¥çš„æ²¡æœ‰æ ¹èŠ‚ç‚¹
 		else if (key < p->data)
 			p->lchild = s;
 		else if (key > p->data)
@@ -62,12 +62,12 @@ int InsertBST(BiTree* T, int key)
 }
 
 
-//´Ó¶ş²æÊ÷ÖĞÉ¾³ı½Úµãp,²¢ÖØĞÂÁ¬½ÓËûµÄ×óÓÒ×ÓÊ÷
+//ä»äºŒå‰æ ‘ä¸­åˆ é™¤èŠ‚ç‚¹p,å¹¶é‡æ–°è¿æ¥ä»–çš„å·¦å³å­æ ‘
 
 int Delete(BiTree* p)
 {
 	BiTree q, s;
-	if ((*p)->rchild == NULL) // ÓÒ×ÓÊ÷Îª¿ÕµÄÊÇÅ¼Ö»ĞèÒªÖØĞÂÁ¬½ÓËûµÄ×ó×ÓÊ÷
+	if ((*p)->rchild == NULL) // å³å­æ ‘ä¸ºç©ºçš„æ˜¯å¶åªéœ€è¦é‡æ–°è¿æ¥ä»–çš„å·¦å­æ ‘
 	{
 		q = *p;
 		(*p) = (*p)->lchild;
@@ -79,7 +79,7 @@ int Delete(BiTree* p)
 		*p = (*p)->rchild;
 		free(q);
 	}
-	else //×óÓÒ×ÓÊ÷¾ù²»Îª¿Õ
+	else //å·¦å³å­æ ‘å‡ä¸ä¸ºç©º
 	{
 		q = *p;
 		s = (*p)->lchild;
@@ -118,17 +118,17 @@ int DeleteBST(BiTree* T, int key)
 	}
 
 }
-// ÖĞĞò±éÀú¶ş²æÊ÷
+// ä¸­åºéå†äºŒå‰æ ‘
 void InOrderTraversal(BiTree T)
 {
 	if (T == NULL)
 		return;
 
-	// ±éÀú×ó×ÓÊ÷
+	// éå†å·¦å­æ ‘
 	InOrderTraversal(T->lchild);
-	// ·ÃÎÊµ±Ç°½Úµã
+	// è®¿é—®å½“å‰èŠ‚ç‚¹
 	printf("%d ", T->data);
-	// ±éÀúÓÒ×ÓÊ÷
+	// éå†å³å­æ ‘
 	InOrderTraversal(T->rchild);
 }
 
@@ -151,7 +151,7 @@ int main()
 	DeleteBST(&T, 47);
 	InOrderTraversal(T);
 	printf("\n");
-	printf("±¾ÑùÀı½¨Òé¶Ïµã¸ú×Ù²é¿´¶ş²æÅÅĞòÊ÷½á¹¹");
+	printf("æœ¬æ ·ä¾‹å»ºè®®æ–­ç‚¹è·Ÿè¸ªæŸ¥çœ‹äºŒå‰æ’åºæ ‘ç»“æ„");
 	return 0;
 
 	return 0;
